@@ -1,7 +1,8 @@
 import "./globals.css";
 import { Inter } from "next/font/google";
 import Provider from "@/app/provider";
-import { ReactNode } from "react";
+import { concat } from "@/library/utils";
+import { ILayout } from "@/library/layout";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -11,18 +12,22 @@ export const metadata = {
     "A simple taxi service mockup created with Next.js and Tailwind.css",
 };
 
-interface IRootLayout {
-  children: ReactNode;
-}
+const Layout = ({ children }: ILayout) => {
+  const className = concat(inter.className, "flex flex-col min-h-screen");
 
-export default function RootLayout({ children }: IRootLayout) {
   return (
-    <html lang="en" className="antialiased" suppressHydrationWarning>
-      <body className={inter.className}>
+    <html
+      lang="en"
+      className="text-primary-foreground antialiased"
+      suppressHydrationWarning
+    >
+      <body className={className}>
         <Provider attribute="class" defaultTheme="system" enableSystem>
           {children}
         </Provider>
       </body>
     </html>
   );
-}
+};
+
+export default Layout;

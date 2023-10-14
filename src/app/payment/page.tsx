@@ -1,8 +1,8 @@
-import Header from "@/components/Header";
+import Header from "@/components/page/Header";
 import Image from "next/image";
-import Container from "@/components/Container";
-import PaymentContainer from "@/components/PaymentContainer";
-import OrderConfirmation from "@/components/OrderConfirmation";
+import Container from "@/components/page/Container";
+import OrderConfirmation from "@/app/order/confirmation";
+import PaymentContainer from "@/app/payment/container";
 
 const Payment = () => {
   return (

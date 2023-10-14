@@ -5,10 +5,10 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
-import { Label } from "@/components/ui/label";
-import { Input } from "@/components/ui/Input";
-import { Button } from "@/components/ui/Button";
+} from "@/components/primitives/Card";
+import { Label } from "@/components/primitives/Label";
+import { Input } from "@/components/primitives/Input";
+import { Button } from "@/components/primitives/Button";
 
 const OrderConfirmation = () => {
   return (

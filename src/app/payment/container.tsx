@@ -5,18 +5,18 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
-import { Label } from "@/components/ui/label";
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import { Input } from "@/components/ui/Input";
+} from "@/components/primitives/Card";
+import { Label } from "@/components/primitives/Label";
+import { RadioGroup, RadioGroupItem } from "@/components/primitives/RadioGroup";
+import { Input } from "@/components/primitives/Input";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/Select";
-import { Button } from "@/components/ui/Button";
+} from "@/components/primitives/Select";
+import { Button } from "@/components/primitives/Button";
 import { CreditCard, Wallet, WalletCards } from "lucide-react";
 
 export function PaymentContainer() {
