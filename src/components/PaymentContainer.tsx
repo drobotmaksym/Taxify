@@ -70,7 +70,7 @@ export function PaymentContainer() {
         </RadioGroup>
 
         <div className="grid gap-2">
-          <Label htmlFor="name">Ім'я</Label>
+          <Label htmlFor="name">Ім&apos;я</Label>
           <Input id="name" placeholder="Іван Гуров" />
         </div>
 

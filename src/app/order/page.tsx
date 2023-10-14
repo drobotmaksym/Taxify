@@ -9,7 +9,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/Select";
-import { Button, buttonVariants } from "@/components/ui/Button";
+import { buttonVariants } from "@/components/ui/Button";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -21,7 +21,7 @@ export default function Order() {
         <Container className="grid grid-cols-12 gap-8 p-16">
           <div className="flex flex-col gap-6 col-start-2 col-end-8">
             <Component>
-              <p>Ім'я замовника</p>
+              <p>Ім&apos;я замовника</p>
               <Input placeholder="Іван Гуров" />
             </Component>
 
