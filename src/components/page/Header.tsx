@@ -1,19 +1,17 @@
-import Container from "@/components/page/Container";
 import { pageNavigation } from "@/library/navigation";
 import { Mode } from "@/components/Mode";
 import Link from "next/link";
 import Company from "@/components/page/Company";
+import { buttonVariants } from "@/components/primitives/Button";
 
 const Header = () => {
   return (
-    <header className="text-gray-900 dark:text-gray-200">
-      <Container>
-        <nav className="grid grid-cols-3 items-center p-8">
-          <Company />
-          <Navigation />
-          <Identity />
-        </nav>
-      </Container>
+    <header className="container text-gray-900 dark:text-gray-200">
+      <nav className="grid grid-cols-3 items-center p-8">
+        <Company />
+        <Navigation />
+        <Identity />
+      </nav>
     </header>
   );
 };
@@ -35,10 +33,15 @@ const Navigation = () => {
 };
 
 const Identity = () => {
+  const linkStyle = buttonVariants({
+    variant: "ghost",
+    className: "text-sm font-semibold leading-6",
+  });
+
   return (
     <div className="flex-1 justify-end flex items-center gap-4">
       <Mode />
-      <Link href="#" className="text-sm font-semibold leading-6">
+      <Link href="#" className={linkStyle}>
         Увійти &rarr;
       </Link>
     </div>

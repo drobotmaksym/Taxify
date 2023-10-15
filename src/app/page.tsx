@@ -3,7 +3,6 @@ import Header from "@/components/page/Header";
 import { buttonVariants } from "@/components/primitives/Button";
 import Image from "next/image";
 import Footer from "@/components/page/Footer";
-import Container from "@/components/page/Container";
 
 function BackgroundUpper() {
   return (
@@ -133,12 +132,12 @@ export default function Home() {
   return (
     <>
       <Header />
-      <Container>
+      <main className="container">
         <BackgroundUpper />
         <BackgroundLower />
         <Hero />
         <Testimonial />
-      </Container>
+      </main>
       <Footer />
     </>
   );

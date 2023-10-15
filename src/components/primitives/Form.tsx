@@ -124,6 +124,57 @@ const FormControl = React.forwardRef<
 });
 FormControl.displayName = "FormControl";
 
+const FormHeader = React.forwardRef<
+  HTMLDivElement,
+  React.HTMLAttributes<HTMLDivElement>
+>(({ className, ...props }, ref) => (
+  <div
+    ref={ref}
+    className={concat("flex items-center flex-col space-y-1.5 p-6", className)}
+    {...props}
+  />
+));
+FormHeader.displayName = "FormHeader";
+
+const FormTitle = React.forwardRef<
+  HTMLParagraphElement,
+  React.HTMLAttributes<HTMLHeadingElement>
+>(({ className, ...props }, ref) => (
+  <h3
+    ref={ref}
+    className={concat(
+      "text-2xl font-semibold leading-none tracking-tight",
+      className,
+    )}
+    {...props}
+  />
+));
+FormTitle.displayName = "FormTitle";
+
+const FormFieldGroup = React.forwardRef<
+  HTMLDivElement,
+  React.HTMLAttributes<HTMLDivElement>
+>(({ className, ...props }, ref) => (
+  <div ref={ref} className={concat("", className)} {...props} />
+));
+FormFieldGroup.displayName = "FormFieldGroup";
+
+const FormContent = React.forwardRef<
+  HTMLDivElement,
+  React.HTMLAttributes<HTMLDivElement>
+>(({ className, ...props }, ref) => (
+  <div ref={ref} className={concat("grid gap-4 p-6", className)} {...props} />
+));
+FormContent.displayName = "FormContent";
+
+const FormFooter = React.forwardRef<
+  HTMLDivElement,
+  React.HTMLAttributes<HTMLDivElement>
+>(({ className, ...props }, ref) => (
+  <div ref={ref} className={concat("p-6", className)} {...props} />
+));
+FormFooter.displayName = "FormFooter";
+
 const FormDescription = React.forwardRef<
   HTMLParagraphElement,
   React.HTMLAttributes<HTMLParagraphElement>
@@ -174,4 +225,9 @@ export {
   FormDescription,
   FormMessage,
   FormField,
+  FormFieldGroup,
+  FormHeader,
+  FormTitle,
+  FormContent,
+  FormFooter,
 };

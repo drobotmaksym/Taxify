@@ -7,7 +7,10 @@ import { ILayout } from "@/library/layout";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
-  title: "Taxify",
+  title: {
+    default: "Taxify",
+    template: "%s - Taxify",
+  },
   description:
     "A simple taxi service mockup created with Next.js and Tailwind.css",
 };
