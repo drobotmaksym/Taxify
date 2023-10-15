@@ -4,7 +4,7 @@ import { buttonVariants } from "@/components/primitives/Button";
 import Image from "next/image";
 import Footer from "@/components/page/Footer";
 
-function BackgroundUpper() {
+const BackgroundUpper = () => {
   return (
     <div
       className="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80"
@@ -19,9 +19,9 @@ function BackgroundUpper() {
       />
     </div>
   );
-}
+};
 
-function BackgroundLower() {
+const BackgroundLower = () => {
   return (
     <div
       className="absolute inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)]"
@@ -36,9 +36,9 @@ function BackgroundLower() {
       />
     </div>
   );
-}
+};
 
-function Announcement() {
+const Announcement = () => {
   return (
     <Link
       href="#"
@@ -48,9 +48,9 @@ function Announcement() {
       <span className="font-medium text-indigo-600">Читати більше &rarr;</span>
     </Link>
   );
-}
+};
 
-function Hero() {
+const Hero = () => {
   return (
     <div className="mx-auto text-center py-36">
       <Announcement />
@@ -80,9 +80,9 @@ function Hero() {
       </div>
     </div>
   );
-}
+};
 
-function BackgroundTestimonial() {
+const BackgroundTestimonial = () => {
   return (
     <svg
       viewBox="0 0 2 2"
@@ -94,9 +94,9 @@ function BackgroundTestimonial() {
       <circle cx={1} cy={1} r={1} />
     </svg>
   );
-}
+};
 
-export function Testimonial() {
+const Testimonial = () => {
   return (
     <section className="relative isolate overflow-hidden mx-auto max-w-3xl py-24 sm:py-32">
       <div className="mx-auto">
@@ -126,9 +126,9 @@ export function Testimonial() {
       </div>
     </section>
   );
-}
+};
 
-export default function Home() {
+const Home = () => {
   return (
     <>
       <Header />
@@ -141,4 +141,6 @@ export default function Home() {
       <Footer />
     </>
   );
-}
+};
+
+export default Home;
