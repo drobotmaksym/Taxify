@@ -6,8 +6,8 @@ import { buttonVariants } from "@/components/primitives/Button";
 
 const Header = () => {
   return (
-    <header className="container text-gray-900 dark:text-gray-200">
-      <nav className="grid grid-cols-3 items-center p-8">
+    <header className="container text-gray-900 dark:text-gray-200 relative">
+      <nav className="flex justify-between items-center p-8">
         <Company />
         <Navigation />
         <Identity />
@@ -18,7 +18,7 @@ const Header = () => {
 
 const Navigation = () => {
   return (
-    <div className="flex justify-center  gap-12">
+    <div className="hidden lg:flex justify-center gap-12 translate-center">
       {pageNavigation.map((item) => (
         <Link
           key={item.name}
@@ -39,7 +39,7 @@ const Identity = () => {
   });
 
   return (
-    <div className="flex-1 justify-end flex items-center gap-4">
+    <div className="flex-1 justify-end flex items-center gap-2">
       <Mode />
       <Link href="#" className={linkStyle}>
         Увійти &rarr;

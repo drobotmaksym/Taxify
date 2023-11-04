@@ -22,7 +22,7 @@ const OrderComplete = ({ children, onSubmit }: IForm) => {
           <FormDescription>Водій виїхав на вказане місце.</FormDescription>
         </FormHeader>
 
-        <FormContent className="py-0">
+        <FormContent className="py-0 dark:invert">
           <AspectRatio ratio={16 / 9}>
             <Image
               src="https://illustrations.popsy.co/amber/searching-location-on-the-phone.svg"

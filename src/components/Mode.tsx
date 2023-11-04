@@ -11,13 +11,14 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/primitives/DropdownMenu";
+import { DropdownMenuTriggerProps } from "@radix-ui/react-dropdown-menu";
 
-export function Mode() {
+export function Mode({ ...props }: DropdownMenuTriggerProps) {
   const { setTheme } = useTheme();
 
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger asChild>
+      <DropdownMenuTrigger {...props} asChild>
         <Button variant="ghost" size="icon">
           <Moon className="icon-md hidden dark:block" />
           <Sun className="icon-md block dark:hidden" />

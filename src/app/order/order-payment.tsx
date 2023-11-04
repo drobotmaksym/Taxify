@@ -248,7 +248,7 @@ const Year = ({ control }: UseFormReturn<OrderPaymentType>) => {
       name="year"
       render={({ field }) => (
         <FormItem>
-          <FormLabel>Місяць</FormLabel>
+          <FormLabel>Рік</FormLabel>
           <FormControl>
             <Select onValueChange={field.onChange} defaultValue={field.value}>
               <SelectTrigger>
