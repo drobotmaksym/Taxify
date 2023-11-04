@@ -27,8 +27,9 @@ const OrderComplete = ({ children, onSubmit }: IForm) => {
             <Image
               src="https://illustrations.popsy.co/amber/searching-location-on-the-phone.svg"
               alt="Photo by Drew Beamer"
-              fill
               className="rounded-md object-contain"
+              fill
+              priority
             />
           </AspectRatio>
         </FormContent>
