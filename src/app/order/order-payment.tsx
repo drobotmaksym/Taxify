@@ -9,8 +9,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/primitives/Select";
-import { z } from "zod";
-import { ReactNode } from "react";
+import { ComponentProps } from "react";
 import { useForm, UseFormReturn } from "react-hook-form";
 import {
   Form,
@@ -26,29 +25,34 @@ import {
   FormTitle,
 } from "@/components/primitives/Form";
 import { IForm } from "@/library/layout";
+import { Skeleton } from "@/components/primitives/Skeleton";
 
-export const OrderPaymentScheme = z.object({
-  method: z.enum(["cash", "paypal", "card"]),
-  fullname: z.string().min(1),
-  number: z.string().min(1),
-  month: z.string(),
-  year: z.string(),
-  code: z.string(),
-});
+export type PaymentMethod = "card" | "cash" | "paypal";
 
-export type OrderPaymentType = z.infer<typeof OrderPaymentScheme>;
+export type OrderPaymentType = {
+  price: string;
+  method: PaymentMethod;
+  name: string;
+  number: string;
+  month: string;
+  year: string;
+  code: string;
+};
 
 const OrderPayment = ({ children, onSubmit }: IForm) => {
   const form = useForm<OrderPaymentType>({
     defaultValues: {
-      method: "cash",
-      fullname: "",
+      price: "425 грн.",
+      method: "card",
+      name: "",
       number: "",
       month: "",
       year: "",
       code: "",
     },
   });
+
+  const method = form.watch("method");
 
   return (
     <Form {...form}>
@@ -61,15 +65,29 @@ const OrderPayment = ({ children, onSubmit }: IForm) => {
         </FormHeader>
 
         <FormContent>
+          <Price {...form} />
           <PaymentMethod {...form} />
-          <FullName {...form} />
-          <Number {...form} />
 
-          <FormFieldGroup className="grid grid-cols-3 gap-4">
-            <Month {...form} />
-            <Year {...form} />
-            <Code {...form} />
-          </FormFieldGroup>
+          {method === "card" && (
+            <>
+              <FullName {...form} />
+              <Number {...form} />
+              <FormFieldGroup className="grid grid-cols-3 gap-4">
+                <Month {...form} />
+                <Year {...form} />
+                <Code {...form} />
+              </FormFieldGroup>
+            </>
+          )}
+
+          {method === "paypal" && (
+            <Skeleton
+              variant="placeholder"
+              className="p-8 text-sm text-destructive border-destructive"
+            >
+              Нажаль оплата за допомогою PayPal наразі не є доступною.
+            </Skeleton>
+          )}
         </FormContent>
 
         <FormFooter className="grid grid-cols-2 gap-4">{children}</FormFooter>
@@ -78,16 +96,36 @@ const OrderPayment = ({ children, onSubmit }: IForm) => {
   );
 };
 
+const Price = ({ control }: UseFormReturn<OrderPaymentType>) => {
+  return (
+    <FormField
+      control={control}
+      name="price"
+      render={({ field }) => (
+        <FormItem>
+          <FormLabel>Вартість замовлення</FormLabel>
+          <FormControl>
+            <Input defaultValue={field.value} disabled {...field} />
+          </FormControl>
+        </FormItem>
+      )}
+    />
+  );
+};
+
 const PaymentItem = ({
   value,
   children,
-}: {
-  value: string;
-  children: ReactNode;
-}) => {
+  ...props
+}: ComponentProps<typeof RadioGroupItem>) => {
   return (
     <div>
-      <RadioGroupItem value={value} id={value} className="peer sr-only" />
+      <RadioGroupItem
+        value={value}
+        id={value}
+        className="peer sr-only"
+        {...props}
+      />
       <Label
         htmlFor={value}
         className="flex flex-col gap-2 items-center justify-between rounded-md border-2 border-muted bg-popover p-4 hover:bg-accent hover:text-accent-foreground peer-data-[state=checked]:border-primary [&:has([data-state=checked])]:border-primary"
@@ -112,6 +150,11 @@ const PaymentMethod = ({ control }: UseFormReturn<OrderPaymentType>) => {
               defaultValue={field.value}
               className="grid grid-cols-3 gap-4"
             >
+              <PaymentItem value="card">
+                <CreditCard />
+                Картка
+              </PaymentItem>
+
               <PaymentItem value="cash">
                 <Wallet />
                 Готівка
@@ -120,11 +163,6 @@ const PaymentMethod = ({ control }: UseFormReturn<OrderPaymentType>) => {
               <PaymentItem value="paypal">
                 <WalletCards />
                 PayPal
-              </PaymentItem>
-
-              <PaymentItem value="card">
-                <CreditCard />
-                Картка
               </PaymentItem>
             </RadioGroup>
           </FormControl>
@@ -138,7 +176,7 @@ const FullName = ({ control }: UseFormReturn<OrderPaymentType>) => {
   return (
     <FormField
       control={control}
-      name="fullname"
+      name="name"
       render={({ field }) => (
         <FormItem>
           <FormLabel>Замовник</FormLabel>

@@ -21,7 +21,7 @@ const OrderTabs = () => {
   const [tab, setTab] = useState<TTab>("order");
 
   return (
-    <Tabs value={tab} className="mx-auto max-w-xl h-full">
+    <Tabs value={tab} className="mx-auto max-w-2xl w-full h-full">
       <div className="flex justify-center">
         <TabsList>
           <TabsTrigger value="order">Замовлення</TabsTrigger>
@@ -45,7 +45,7 @@ const OrderTabs = () => {
           >
             Повернутися назад
           </Button>
-          <Button type="submit">Здійснити оплату</Button>
+          <Button type="submit">Продовжити</Button>
         </OrderPayment>
       </Tab>
 

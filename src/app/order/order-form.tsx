@@ -20,31 +20,32 @@ import {
   FormTitle,
 } from "@/components/primitives/Form";
 import { useForm, UseFormReturn } from "react-hook-form";
-import { z } from "zod";
 import { IForm } from "@/library/layout";
+import { Checkbox } from "@/components/primitives/Checkbox";
 
-export const OrderFormScheme = z.object({
-  fullname: z.string().min(1).max(64),
-  departure: z.string().min(1).max(256),
-  destination: z.string().min(1).max(256),
-  city: z.string().refine((value) => value !== ""),
-  time: z.string().refine((value) => value !== ""),
-  children: z.number().min(0),
-  adults: z.number().min(1),
-});
-
-export type OrderFormType = z.infer<typeof OrderFormScheme>;
+export type OrderFormType = {
+  name: string;
+  phone: string;
+  departure: string;
+  destination: string;
+  city: string;
+  time: string;
+  children: number;
+  adults: number;
+  baggage: boolean;
+};
 
 export const OrderForm = ({ children, onSubmit }: IForm) => {
-  const form = useForm({
+  const form = useForm<OrderFormType>({
     defaultValues: {
-      fullname: "",
+      name: "",
       departure: "",
       destination: "",
       city: "",
       time: "",
       children: 0,
       adults: 1,
+      baggage: false,
     },
   });
 
@@ -57,9 +58,15 @@ export const OrderForm = ({ children, onSubmit }: IForm) => {
         </FormHeader>
 
         <FormContent>
-          <FullName {...form} />
-          <Departure {...form} />
-          <Destination {...form} />
+          <FormFieldGroup className="grid grid-cols-2 gap-4">
+            <FullName {...form} />
+            <Phone {...form} />
+          </FormFieldGroup>
+
+          <FormFieldGroup className="grid grid-cols-2 gap-4">
+            <Departure {...form} />
+            <Destination {...form} />
+          </FormFieldGroup>
 
           <FormFieldGroup className="grid grid-cols-2 gap-4">
             <City {...form} />
@@ -70,6 +77,8 @@ export const OrderForm = ({ children, onSubmit }: IForm) => {
             <Children {...form} />
             <Adults {...form} />
           </FormFieldGroup>
+
+          <Baggage {...form} />
         </FormContent>
 
         <FormFooter className="grid">{children}</FormFooter>
@@ -82,12 +91,29 @@ const FullName = ({ control }: UseFormReturn<OrderFormType>) => {
   return (
     <FormField
       control={control}
-      name="fullname"
+      name="name"
       render={({ field }) => (
         <FormItem>
           <FormLabel>Замовник</FormLabel>
           <FormControl>
             <Input placeholder="Іван Гуров" {...field} />
+          </FormControl>
+        </FormItem>
+      )}
+    />
+  );
+};
+
+const Phone = ({ control }: UseFormReturn<OrderFormType>) => {
+  return (
+    <FormField
+      control={control}
+      name="phone"
+      render={({ field }) => (
+        <FormItem>
+          <FormLabel>Номер телефону</FormLabel>
+          <FormControl>
+            <Input placeholder="+380123456789" {...field} />
           </FormControl>
         </FormItem>
       )}
@@ -206,8 +232,28 @@ const Adults = ({ control }: UseFormReturn<OrderFormType>) => {
         <FormItem>
           <FormLabel>Кількість дорослих</FormLabel>
           <FormControl>
-            <Input type="number" {...field} min={1} />
+            <Input type="number" min={1} {...field} />
           </FormControl>
+        </FormItem>
+      )}
+    />
+  );
+};
+
+const Baggage = ({ control }: UseFormReturn<OrderFormType>) => {
+  return (
+    <FormField
+      control={control}
+      name="baggage"
+      render={({ field }) => (
+        <FormItem className="flex jitems-start space-x-3 space-y-0 ">
+          <FormControl>
+            <Checkbox checked={field.value} onCheckedChange={field.onChange} />
+          </FormControl>
+          <div className="space-y-1 leading-none">
+            <FormLabel>Я потребую місце для багажу.</FormLabel>
+            <FormDescription>Може буте знята додаткова плата</FormDescription>
+          </div>
         </FormItem>
       )}
     />

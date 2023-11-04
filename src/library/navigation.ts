@@ -6,10 +6,10 @@ export type TLink = {
 export const pageNavigation: TLink[] = [
   {
     name: "Контакти",
-    href: "/contacts",
+    href: "#",
   },
   {
     name: "Про нас",
-    href: "/about",
+    href: "#",
   },
 ];
